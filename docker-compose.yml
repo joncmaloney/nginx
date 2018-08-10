@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  nginx-proxy:
+    container_name: nginx
+    image: jwilder/nginx-proxy:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./reverse_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro
+      - ./proxy.conf:/etc/nginx/proxy.conf:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
